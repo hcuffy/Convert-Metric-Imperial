@@ -1,9 +1,6 @@
-exports.makeConversion = (err, req, res, next) => {
-	console.log('ertghfh');
-	if (err) {
-		next(err);
-	}
-	var test = req.body;
+exports.makeConversion = (req, res, next) => {
+	var test = req.query;
+	console.log(test);
 
 	res.render('index');
 };

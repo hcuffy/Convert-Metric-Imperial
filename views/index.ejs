@@ -12,11 +12,11 @@
   <body>
     <div class="container">
       <h3>Metric-Imperial Conversion</h3>
-      <form action="api/convert" method="get">
+      <form action="/api/convert" method="get">
         <div class="form-group">
-          <label for="user-data"> Data to Convert:
+          <label> Data to Convert:
       </label>
-          <input id="user-data" class="form-control" type="text" placeholder="Enter the data" required>
+          <input class="form-control" type="text" name="data" placeholder="Enter the data" required>
         </div>
         <button type="submit" class="btn btn-primary">Submit</button>
       </form>
