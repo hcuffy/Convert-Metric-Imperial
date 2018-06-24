@@ -2,7 +2,7 @@ const express = require('express');
 const router = express.Router();
 const convertController = require('../controllers/conversions');
 
-router.get('/api/convert', pollsController.makeConversion);
+router.get('/api/convert', convertController.makeConversion);
 router.get('/', (req, res, next) => {
 	res.render('index');
 });
