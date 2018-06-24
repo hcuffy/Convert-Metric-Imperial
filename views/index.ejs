@@ -10,16 +10,18 @@
   </head>
 
   <body>
-    <h3>Metric-Imperial Conversion</h3>
-    <form>
-      <div class="form-group">
-        <label for="user-data"> Data to Convert:
+    <div class="container">
+      <h3>Metric-Imperial Conversion</h3>
+      <form action="api/convert" method="get">
+        <div class="form-group">
+          <label for="user-data"> Data to Convert:
       </label>
-        <input id="user-data" class="form-control" type="text" placeholder="Enter the data" required>
-      </div>
-      <button id="submit" type="submit" class="btn btn-primary">Submit</button>
-    </form>
-    <span>The results:</span>
+          <input id="user-data" class="form-control" type="text" placeholder="Enter the data" required>
+        </div>
+        <button type="submit" class="btn btn-primary">Submit</button>
+      </form>
+      <h4>Results: </h4>
+    </div>
   </body>
 
 </html>
