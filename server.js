@@ -2,12 +2,9 @@ const path = require('path');
 const express = require('express');
 const routes = require('./routes');
 const bodyParser = require('body-parser');
-const mongoose = require('mongoose');
 const helmet = require('helmet');
 
 const app = express();
-
-mongoose.connect(process.env.MONGODB_URI || 'mongodb://localhost/conversion');
 
 app.set('view engine', 'ejs');
 app.set('views', path.join(__dirname, 'views'));
