@@ -3,7 +3,10 @@ exports.makeConversion = (req, res, next) => {
 	let firstNum = input.search(/\d/);
 	let firstLetter = input.search(/[a-zA-Z]/);
 	let num = input.slice(firstNum, firstLetter).trim();
-	let unit = input.slice(firstLetter).trim();
+	let unit = input
+		.slice(firstLetter)
+		.trim()
+		.toLowerCase();
 	console.log(unit);
 
 	res.render('index');
