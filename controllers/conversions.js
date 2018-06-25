@@ -1,6 +1,7 @@
 exports.makeConversion = (req, res, next) => {
-	var test = req.query;
-	console.log(test);
+	var input = req.query.data;
+	let firstNum = input.replace(/[^0-9\.\/]+/g, '');
+	console.log(firstNum);
 
 	res.render('index');
 };
