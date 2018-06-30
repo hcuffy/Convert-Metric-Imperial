@@ -1,4 +1,10 @@
-# FCC BookTrade
+# Convert Metric-to-Imperial
+
+Users can convert numbers between the following:
+
+`gallons(gal) <-> liters(l)`
+`kilograms(kg) <->pounds(lbs)`
+`miles(mi) <-> kilometers(km)`
 
 Follow this README in order to properly run this application.
 
