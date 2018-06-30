@@ -22,27 +22,27 @@ exports.makeConversion = (req, res, next) => {
 			fullUnit = 'gallons';
 			break;
 		case 'l':
-			newNum = num * 3.78541;
+			newNum = num / 3.78541;
 			newUnit = 'gal';
 			fullUnit = 'liters';
 			break;
 		case 'lbs':
-			newNum = num * 3.78541;
+			newNum = num * 0.453592;
 			newUnit = 'kg';
 			fullUnit = 'kilograms';
 			break;
 		case 'kg':
-			newNum = num * 3.78541;
+			newNum = num / 0.453592;
 			newUnit = 'lbs';
 			fullUnit = 'pounds';
 			break;
 		case 'mi':
-			newNum = num * 3.78541;
+			newNum = num * 1.60934;
 			newUnit = 'km';
 			fullUnit = 'kilometers';
 			break;
 		case 'km':
-			newNum = num * 3.78541;
+			newNum = num / 1.60934;
 			newUnit = 'mi';
 			fullUnit = 'miles';
 			break;
