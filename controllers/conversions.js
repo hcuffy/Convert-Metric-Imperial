@@ -1,9 +1,21 @@
+function validations(num, unit) {
+	var unitsArr = ['gal', 'l', 'kg', 'lbs', 'mi', 'km'];
+
+	if ((!unitsArr.includes(unit) && isNaN(num)) || num == '') {
+		res.render('invalid', { invalid: 'Invalid unit & number' });
+	} else if (!unitsArr.includes(unit)) {
+		res.render('invalid', { invalid: 'Invalid unit' });
+	} else if (isNaN(num) || num == '') {
+		res.render('invalid', { invalid: 'Invalid number' });
+	}
+}
+
 exports.makeConversion = (req, res, next) => {
 	const input = req.query.data;
 	const firstNum = input.search(/\d/);
 	const firstLetter = input.search(/[a-zA-Z]+/);
 	let num = input.slice(firstNum, firstLetter).trim();
-	const unit = input
+	let unit = input
 		.slice(firstLetter)
 		.trim()
 		.toLowerCase();
@@ -12,9 +24,9 @@ exports.makeConversion = (req, res, next) => {
 	if (num.match(/\//)) {
 		let fracArr = num.split('/');
 		num = fracArr[0] / fracArr[1];
-	} else if (isNaN(num) || num == '') {
-		console.log('not a number');
 	}
+
+	validations(num, unit);
 
 	var newNum = 0;
 	var newUnit = 0;
@@ -59,16 +71,17 @@ exports.makeConversion = (req, res, next) => {
 			prevUnitFull = 'kilometers';
 			break;
 		default:
+			console.log('No valid unit.');
 	}
 
 	var answer =
 		num + ' ' + prevUnitFull + ' converts to ' + newNum + ' ' + newUnitFull;
 
 	res.render('conversions', {
+		num,
+		unit,
 		newNum,
 		newUnit,
-		newUnitFull,
-		prevUnitFull,
 		answer
 	});
 };
