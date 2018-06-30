@@ -1,16 +1,21 @@
 exports.makeConversion = (req, res, next) => {
-	var input = req.query.data;
+	const input = req.query.data;
 	const firstNum = input.search(/\d/);
 	const firstLetter = input.search(/[a-zA-Z]+/);
-	const num = input.slice(firstNum, firstLetter).trim();
+	let num = input.slice(firstNum, firstLetter).trim();
 	const unit = input
 		.slice(firstLetter)
 		.trim()
 		.toLowerCase();
 	// TODO: Add more validations
-	if (isNaN(num) || num == '') {
+
+	if (num.match(/\//)) {
+		let fracArr = num.split('/');
+		num = fracArr[0] / fracArr[1];
+	} else if (isNaN(num) || num == '') {
 		console.log('not a number');
 	}
+
 	var newNum = 0;
 	var newUnit = '';
 	var fullUnit = '';
