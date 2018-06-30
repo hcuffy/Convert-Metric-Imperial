@@ -64,7 +64,7 @@ exports.makeConversion = (req, res, next) => {
 	var answer =
 		num + ' ' + prevUnitFull + ' converts to ' + newNum + ' ' + newUnitFull;
 
-	res.render('index', {
+	res.render('conversions', {
 		newNum,
 		newUnit,
 		newUnitFull,
