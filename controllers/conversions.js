@@ -1,10 +1,10 @@
-function validations(num, unit) {
+function validations(res, num, unit) {
 	var unitsArr = ['gal', 'l', 'kg', 'lbs', 'mi', 'km'];
 
 	if ((!unitsArr.includes(unit) && isNaN(num)) || num == '') {
-		res.render('invalid', { invalid: 'Invalid unit & number' });
+		res.render('invalid', { invalid: 'Invalid Unit & Number' });
 	} else if (!unitsArr.includes(unit)) {
-		res.render('invalid', { invalid: 'Invalid unit' });
+		res.render('invalid', { invalid: 'Invalid Unit' });
 	} else if (isNaN(num) || num == '') {
 		res.render('invalid', { invalid: 'Invalid number' });
 	}
@@ -26,7 +26,7 @@ exports.makeConversion = (req, res, next) => {
 		num = fracArr[0] / fracArr[1];
 	}
 
-	validations(num, unit);
+	validations(res, num, unit);
 
 	var newNum = 0;
 	var newUnit = 0;
