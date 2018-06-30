@@ -1,7 +1,7 @@
 function validations(res, num, unit) {
 	var unitsArr = ['gal', 'l', 'kg', 'lbs', 'mi', 'km'];
 
-	if ((!unitsArr.includes(unit) && isNaN(num)) || num == '') {
+	if (!unitsArr.includes(unit) && isNaN(num)) {
 		res.render('invalid', { invalid: 'Invalid Unit & Number' });
 	} else if (!unitsArr.includes(unit)) {
 		res.render('invalid', { invalid: 'Invalid Unit' });
@@ -19,7 +19,10 @@ exports.makeConversion = (req, res, next) => {
 		.slice(firstLetter)
 		.trim()
 		.toLowerCase();
-	// TODO: Add more validations
+
+	if (num == '') {
+		num = 1;
+	}
 
 	if (num.match(/\//)) {
 		let fracArr = num.split('/');
