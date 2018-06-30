@@ -17,44 +17,58 @@ exports.makeConversion = (req, res, next) => {
 	}
 
 	var newNum = 0;
-	var newUnit = '';
-	var fullUnit = '';
+	var newUnit = 0;
+	var newUnitFull = '';
+	var prevUnitFull = '';
 
 	switch (unit) {
 		case 'gal':
 			newNum = num * 3.78541;
 			newUnit = 'l';
-			fullUnit = 'gallons';
+			newUnitFull = 'liters';
+			prevUnitFull = 'gallons';
 			break;
 		case 'l':
 			newNum = num / 3.78541;
 			newUnit = 'gal';
-			fullUnit = 'liters';
+			newUnitFull = 'gallons';
+			prevUnitFull = 'liters';
 			break;
 		case 'lbs':
 			newNum = num * 0.453592;
 			newUnit = 'kg';
-			fullUnit = 'kilograms';
+			newUnitFull = 'kilograms';
+			prevUnitFull = 'pounds';
 			break;
 		case 'kg':
 			newNum = num / 0.453592;
 			newUnit = 'lbs';
-			fullUnit = 'pounds';
+			newUnitFull = 'pounds';
+			prevUnitFull = 'kilograms';
 			break;
 		case 'mi':
 			newNum = num * 1.60934;
 			newUnit = 'km';
-			fullUnit = 'kilometers';
+			newUnitFull = 'kilometers';
+			prevUnitFull = 'miles';
 			break;
 		case 'km':
 			newNum = num / 1.60934;
 			newUnit = 'mi';
-			fullUnit = 'miles';
+			newUnitFull = 'miles';
+			prevUnitFull = 'kilometers';
 			break;
 		default:
 	}
-	console.log(
-		num + ' ' + unit + ' ' + newUnit + ' ' + newNum + '  ' + fullUnit
-	);
-	res.render('index');
+
+	var answer =
+		num + ' ' + prevUnitFull + ' converts to ' + newNum + ' ' + newUnitFull;
+
+	res.render('index', {
+		newNum,
+		newUnit,
+		newUnitFull,
+		prevUnitFull,
+		answer
+	});
 };
