@@ -11,7 +11,45 @@ exports.makeConversion = (req, res, next) => {
 	if (isNaN(num) || num == '') {
 		console.log('not a number');
 	}
-	console.log(unit);
-	// TODO: Add conversion
+	var newNum = 0;
+	var newUnit = '';
+	var fullUnit = '';
+
+	switch (unit) {
+		case 'gal':
+			newNum = num * 3.78541;
+			newUnit = 'l';
+			fullUnit = 'gallons';
+			break;
+		case 'l':
+			newNum = num * 3.78541;
+			newUnit = 'gal';
+			fullUnit = 'liters';
+			break;
+		case 'lbs':
+			newNum = num * 3.78541;
+			newUnit = 'kg';
+			fullUnit = 'kilograms';
+			break;
+		case 'kg':
+			newNum = num * 3.78541;
+			newUnit = 'lbs';
+			fullUnit = 'pounds';
+			break;
+		case 'mi':
+			newNum = num * 3.78541;
+			newUnit = 'km';
+			fullUnit = 'kilometers';
+			break;
+		case 'km':
+			newNum = num * 3.78541;
+			newUnit = 'mi';
+			fullUnit = 'miles';
+			break;
+		default:
+	}
+	console.log(
+		num + ' ' + unit + ' ' + newUnit + ' ' + newNum + '  ' + fullUnit
+	);
 	res.render('index');
 };
