@@ -23,7 +23,7 @@ You will need the following things properly installed on your computer.
 CLIENT
 
 - `git clone <repository-url>` this repository
-- `cd Booktrade`
+- `cd Convert-Metric-Imperial`
 - `npm install`
 
 DATABASE
