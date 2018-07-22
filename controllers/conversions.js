@@ -12,6 +12,7 @@ function validations(res, num, unit) {
 
 exports.makeConversion = (req, res, next) => {
 	const input = req.query.data
+	console.log(input)
 	const firstNum = input.search(/\d/)
 	const firstLetter = input.search(/[a-zA-Z]+/)
 	let num = input.slice(firstNum, firstLetter).trim()
@@ -28,7 +29,7 @@ exports.makeConversion = (req, res, next) => {
 		let fracArr = num.split('/')
 		num = fracArr[0] / fracArr[1]
 	}
-
+	console.log(num+ ' '+ unit)
 	validations(res, num, unit)
 
 	var newNum = 0
