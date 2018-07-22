@@ -5,8 +5,8 @@ const assert = require('chai').assert
 const server = require('../server')
 chai.use(chaiHttp)
 
-describe('Testing functions', function ()   {
-	it('convert liters to gallons', function(done)   {
+describe('Testing functions',  ()  => {
+	it('convert liters to gallons', (done) =>   {
 		chai.request(server)
 			.get('/api/convert')
 			.query({ data: '34l' })
@@ -15,7 +15,7 @@ describe('Testing functions', function ()   {
 				done()
 			})
 	})
-	it('convert fraction liters to gallons', function(done)   {
+	it('convert fraction liters to gallons', (done) =>  {
 		chai.request(server)
 			.get('/api/convert')
 			.query({ data:'3/4l' })
@@ -25,7 +25,7 @@ describe('Testing functions', function ()   {
 			})
 	})
 
-	it('convert deciment kilometers to miles', function(done)   {
+	it('convert deciment kilometers to miles', (done) =>  {
 		chai.request(server)
 			.get('/api/convert')
 			.query({ data:'3.5km' })
@@ -35,10 +35,20 @@ describe('Testing functions', function ()   {
 			})
 	})
 
-	it('convert franction-decimal gallon to liters', function(done)   {
+	it('convert franction-decimal gallon to liters', (done)  => {
 		chai.request(server)
 			.get('/api/convert')
 			.query({ data:'3.4/3.5gal' })
+			.end((err, res) => {
+				assert.equal(res.status, 200)
+				done()
+			})
+	})
+
+	it('convert pounds  to kilogram', (done) =>  {
+		chai.request(server)
+			.get('/api/convert')
+			.query({ data:'24lbs' })
 			.end((err, res) => {
 				assert.equal(res.status, 200)
 				done()
