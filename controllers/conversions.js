@@ -3,34 +3,54 @@ function validations(res, num, unit) {
 
 	if (!unitsArr.includes(unit) && isNaN(num)) {
 		res.render('invalid', { invalid: 'Invalid Unit & Number' })
+		return true
 	} else if (!unitsArr.includes(unit)) {
 		res.render('invalid', { invalid: 'Invalid Unit' })
+		return true
 	} else if (isNaN(num) || num == '') {
 		res.render('invalid', { invalid: 'Invalid number' })
+		return true
 	}
+	return false
+}
+
+function hasSpecialCharacter(res,character){
+	if (character.length >= 0) {
+		res.render('invalid', { invalid: 'Invalid Unit OR Number' })
+		return true
+	} else {
+		return false
+	}
+
 }
 
 exports.makeConversion = (req, res, next) => {
 	const input = req.query.data
-	console.log(input)
 	const firstNum = input.search(/\d/)
 	const firstLetter = input.search(/[a-zA-Z]+/)
+	const specialChar = input.search(/[^\w\/\.\s]/)
+	if (hasSpecialCharacter(res, specialChar)){
+		res.end('Invalid Unit OR Number')
+		return
+	}
 	let num = input.slice(firstNum, firstLetter).trim()
+	 if (firstNum == -1){
+	   num = 1
+	 }
+
 	let unit = input
 		.slice(firstLetter)
 		.trim()
 		.toLowerCase()
 
-	if (num == '') {
-		num = 1
-	}
-
-	if (num.match(/\//)) {
+	if (String(num).match(/\//)) {
 		let fracArr = num.split('/')
 		num = fracArr[0] / fracArr[1]
 	}
-	console.log(num+ ' '+ unit)
-	validations(res, num, unit)
+	if (validations(res, num, unit)){
+		res.end('Invalid Unit')
+		return
+	}
 
 	var newNum = 0
 	var newUnit = 0
