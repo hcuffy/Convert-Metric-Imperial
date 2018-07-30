@@ -38,15 +38,22 @@ exports.makeConversion = (req, res, next) => {
 	   num = 1
 	 }
 
+
 	let unit = input
 		.slice(firstLetter)
 		.trim()
 		.toLowerCase()
 
+	if (String(num).match(/\/{2,}/)) {
+		res.render('invalid', { invalid: 'Invalid Unit OR Number' })
+		return
+	}
+
 	if (String(num).match(/\//)) {
 		let fracArr = num.split('/')
 		num = fracArr[0] / fracArr[1]
 	}
+	
 	if (validations(res, num, unit)){
 		res.end('Invalid Unit')
 		return
